@@ -1,0 +1,211 @@
+<!-- submit_paper.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Paper</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-container {
+      display: flex;
+  flex-direction: column;
+  align-items: center; /* Align items in the center horizontally */
+  justify-content: center; /* Center the entire form vertically */
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+    }
+
+    .header-container {
+      margin: 20px;
+      background-color: #6200ea; /* Purple background color */
+      padding: 30px;
+      text-align: center;
+      border-bottom: 3px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+      width: 75%;
+    }
+
+    /* .header-container img {
+      max-width: 100%;
+      height: 200px;
+      margin-bottom: 10px;
+    } */
+
+    .section-container {
+      background-color: whitesmoke;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+      padding: 20px;
+      box-sizing: border-box;
+      width: 80%; /* Adjust the width as needed */
+    }
+
+    .form-section {
+      margin-bottom: 20px;
+    }
+
+    .preview-section {
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+    }
+
+    .document-preview {
+      width: 25%;
+      height: 500px;
+      border: 1px solid #ccc;
+      margin-top: 20px;
+    }
+
+    /* Styling for form fields */
+    label {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      display: block;
+      color: #6200ea; /* Purple text color */
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea,
+    select {
+      width: 100%;
+     padding: 8px;
+     margin-bottom: 12px;
+     box-sizing: border-box;
+     border: 1px solid #e9e5ef; /* Purple border color */
+     border-radius: 4px;
+     font-size: 20px; /* Adjust the font size for user input */
+    }
+
+    button {
+      background-color: #6200ea; /* Purple background color */
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #512da8; /* Darker purple on hover */
+    }
+
+    /* Media queries for responsiveness */
+    @media only screen and (max-width: 600px) {
+      .section-container {
+        width: 100%;
+      }
+
+      .document-preview {
+        max-height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <!-- Header Section -->
+    <div class="header-container">
+      <h3 style="color: #ffffff;font-size: 25px;">Application for Research Paper</h3>
+      <img src="https://media-rd.s3.amazonaws.com/featured_image/2019/05/innovation_0.jpg" alt="Header Image"style="
+      width: 100%;">
+    </div>
+
+    <!-- Main Form Section -->
+    <div class="section-container">
+      <!-- Form Section -->
+      <div class="form-section">
+        <form method="POST" enctype="multipart/form-data" action="{% url 'submit-paper'%}" >
+          {% csrf_token %}
+          <!-- First Section: Title and Author Names -->
+          <div class="section-container">
+            <label for="id_title">Title</label>
+           <input type="text" id="title">
+          </div>
+            <div class="section-container">
+            <label for="id_author_names">Author Names</label>
+            <input type="text" id="author_names">
+          </div>
+          <div class="section-container">
+            <label for="id_email">Email</label>
+            <input type="email" id="email">
+             </div> 
+          <!-- Third Section: Paper Details -->
+          <div class="section-container">
+            <label for="id_description">Description</label>
+            <input type="text" id="description">
+          </div>
+            <div class="section-container">
+            <label for="id_guide_name">Guide Name</label>
+            <input type="text" id="guide_name">
+          </div>
+          <div class="section-container">
+            <label for="id_is_student"><input type="checkbox" id="id_is_student"></label>
+          </div>
+          <div class="section-container">
+            <label for="id_college_name">College Name</label>
+            <input type="text" id="college_name">
+          </div>
+
+          <!-- Fourth Section: Document Upload and Preview -->
+          <div class="section-container">
+            <label for="id_journal_options">Select Journal Options</label>
+            {{ form.journal_options }}
+          </div>
+            <div class="section-container">
+            <label for="id_payment_receipt">Attach Payment Receipt</label>
+            {{ form.payment_receipt }}
+          </div>
+            <div class="section-container">
+            <label for="id_document">Attach Document</label>
+            {{ form.document }}
+            </div>
+            <div class="preview-section">
+              <h3 style="color: #6200ea;">Document Preview</h3>
+              <iframe class="document-preview" id="documentPreview" style="display: none;"></iframe>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <center><h1>{{message_name}}</h1></center>
+
+  <!-- JavaScript to handle file input change -->
+  <script>
+    const documentInput = document.getElementById('id_document');
+    const documentPreview = document.getElementById('documentPreview');
+
+    documentInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+
+      if (file) {
+        documentPreview.src = URL.createObjectURL(file);
+        documentPreview.style.display = 'block';
+      } else {
+        documentPreview.src = '';
+        documentPreview.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

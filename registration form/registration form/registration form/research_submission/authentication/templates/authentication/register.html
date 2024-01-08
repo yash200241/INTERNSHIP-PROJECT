@@ -1,0 +1,226 @@
+<head>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-image: url('https://static.vecteezy.com/system/resources/thumbnails/009/295/511/original/4k-stop-motion-stack-overload-document-report-paper-with-colorful-paperclip-on-black-background-and-copy-space-business-concept-footage-paperless-used-free-video.jpg');
+      background-size: cover;
+      background-position: center;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .header-container {
+      background-color: #6200ea;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+      border-radius: 8px 8px 0 0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+    }
+
+    .header-container img {
+      max-width: 100%;
+      height: 200px;
+      margin-bottom: 10px;
+    }
+
+    .form-section {
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 8px;
+      display: block;
+      color: #8c30d8; /* Purple text color */
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 12px;
+      box-sizing: border-box;
+      border: 1px solid #e9e5ef; /* Purple border color */
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #6200ea; /* Purple background color */
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #512da8; /* Darker purple on hover */
+    }
+
+    .registration-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .login-box {
+      width: 300px;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      margin: 20px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .login-box input[type="text"],
+    .login-box input[type="email"],
+    .login-box input[type="password"] {
+      border: none;
+      border-bottom: 1px solid #fff;
+      background: #e9e5ef;
+      outline: none;
+      height: 40px;
+      color: #000;
+      font-size: 16px;
+    }
+
+    .login-box button {
+      border: none;
+      outline: none;
+      height: 40px;
+      background: #6200ea;
+      color: white;
+      font-size: 18px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .login-box button:hover {
+      background: #512da8;
+      color: #fff;
+    }
+
+    .login-box h3 {
+      text-align: center;
+      color: white;
+      background-color: #6200ea; /* Purple background color */
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .registration-box {
+      width: 300px;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      margin: 20px;
+      padding: 20px;
+      box-sizing: border-box;
+      background-color: #fff;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .registration-box input[type="text"],
+    .registration-box input[type="email"],
+    .registration-box input[type="password"] {
+      border: none;
+      border-bottom: 1px solid #fff;
+      background: #e9e5ef;
+      outline: none;
+      height: 40px;
+      color: #000;
+      font-size: 16px;
+    }
+
+    .registration-box button {
+      padding: 10px 15px;
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #6200ea;
+    color: white;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    }
+
+    .registration-box button:hover {
+      background: #512da8;
+      color: #fff;
+    }
+
+    .registration-box h1 {
+      text-align: center;
+      color: white;
+      background-color: #6200ea; /* Purple background color */
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<div class="registration-container">
+  <!-- Registration Box -->
+  <div class="registration-box">
+    <h1>Register here</h1>
+    <form method="post" action="{% url 'register' %}">
+      {% csrf_token %}
+      <label for="id_username">Username:</label>
+      <input type="text" id="id_username" name="username" required>
+
+      <label for="id_email">Email:</label>
+      <input type="email" id="id_email" name="email" required>
+
+      <label for="id_password1">Password:</label>
+      <input type="password" id="id_password1" name="password1" required>
+
+      <label for="id_password2">Confirm Password:</label>
+      <input type="password" id="id_password2" name="password2" required>
+
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit">Register</button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="http://127.0.0.1:8000/" style="
+    padding: 11px 15px;
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #6200ea;
+    color: white;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+">Login</a>
+    </form>
+  </div>
+</div>
+
+<!-- JavaScript to toggle the registration box visibility -->
+<script>
+  function toggleRegistration() {
+    var registrationBox = document.querySelector('.registration-box');
+    if (registrationBox.style.display === 'none' || registrationBox.style.display === '') {
+      registrationBox.style.display = 'block';
+    } else {
+      registrationBox.style.display = 'none';
+    }
+  }
+</script>

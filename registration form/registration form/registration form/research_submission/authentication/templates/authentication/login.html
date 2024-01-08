@@ -1,0 +1,179 @@
+<!-- login.html -->
+<head>
+  <style>
+      body {
+        font-family: 'Arial', sans-serif;
+          background-image: url('https://static.vecteezy.com/system/resources/thumbnails/009/295/511/original/4k-stop-motion-stack-overload-document-report-paper-with-colorful-paperclip-on-black-background-and-copy-space-business-concept-footage-paperless-used-free-video.jpg');
+          background-size: cover;
+          background-position: center;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+      }
+      
+      .main-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+      }
+
+      .form-container {
+          background-color: white;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          border-radius: 8px;
+          margin: 20px;
+          padding: 20px;
+          box-sizing: border-box;
+          
+      }
+
+      .header-container {
+          background-color: #6200ea;
+          color: white;
+          padding: 20px;
+          text-align: center;
+          border-bottom: 1px solid #ccc;
+          border-radius: 8px 8px 0 0;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          box-sizing: border-box;
+      }
+
+      .header-container h2 {
+          margin: 0;
+      }
+
+      .form-section {
+          margin-bottom: 20px;
+      }
+
+      label, h2 {
+          font-weight: bold;
+          margin-bottom: 8px;
+          display: block;
+          color: #8c30d8;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+          width: 100%;
+          padding: 8px;
+          margin-bottom: 12px;
+          box-sizing: border-box;
+          border: 1px solid #e9e5ef;
+          border-radius: 4px;
+      }
+
+      button {
+          background-color: #6200ea;
+          color: white;
+          padding: 10px 15px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 16px;
+      }
+
+      button:hover {
+          background-color: #512da8;
+      }
+
+      .link-container {
+          text-align: center;
+          margin-top: 10px;
+      }
+
+      .link-container a {
+          color: #6200ea;
+      }
+
+      .link-container a:hover {
+          text-decoration: underline;
+      }
+
+      .login-box {
+          
+          width: 300px;
+          background-color: white;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          border-radius: 8px;
+          margin: 20px;
+          padding: 20px;
+          box-sizing: border-box;
+      }
+
+      .login-box input[type="text"],
+      .login-box input[type="email"],
+      .login-box input[type="password"] {
+          border: none;
+          border-bottom: 1px solid #fff;
+          background: #e9e5ef;
+          outline: none;
+          height: 40px;
+          color: #000;
+          font-size: 16px;
+          text-align: center;
+      }
+
+      .login-box input[type="submit"] {
+          border: none;
+          
+          outline: none;
+          padding: 10px 15px ;
+          background: #6200ea;
+          color: white;
+          font-size: 16px;
+          border-radius: 4px;
+          cursor: pointer;
+      }
+
+      .login-box input[type="submit"]:hover {
+          background: #512da8;
+          color: #fff;
+      }
+      .login-box h3 {
+          text-align: center;
+          color: white;
+          background-color: #6200ea; /* Purple background color */
+          padding: 10px;
+          border-radius: 8px;
+          margin-bottom: 20px;
+      }
+
+      .button-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+      }
+  </style>
+</head>
+
+<div class="login-box">
+  <!-- Header Section -->
+  <h3>LOGIN</h3>
+
+  <!-- Main Form Section -->
+  <div class="form-container">
+      <!-- Form Section -->
+      <div class="form-section">
+          <form method="post" action="{% url 'submit_paper' %}">
+              {% csrf_token %}
+              <label for="username">Username:</label>
+              <input type="text" name="username" required>
+              <label for="password">Password:</label>
+              <input type="password" name="password" required>
+
+              <!-- Add a submit input for the login button -->
+              <input type="submit" class="login-button" value="Login">
+          </form>
+      </div>
+
+      <!-- Button Container -->
+      <div class="button-container">
+          <button class="register-button" onclick="window.location.href='{% url 'register' %}'">Register</button>
+      </div>
+  </div>
+</div>
